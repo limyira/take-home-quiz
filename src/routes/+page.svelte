@@ -1,5 +1,19 @@
 <script>
-	import { categoryOrder, categories } from '../mockupData';
+	import { onMount } from 'svelte';
+
+	let categoryOrder = [];
+	let categories = {};
+
+	onMount(async () => {
+		try {
+			const res = await fetch('http://localhost:5173/api');
+			const data = await res.json();
+			categoryOrder = data.categoryOrder;
+			categories = data.categories;
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	});
 </script>
 
 <svelte:head>
@@ -7,6 +21,9 @@
 </svelte:head>
 
 <section class="h-fit w-screen flex p-7 pt-28">
+	{#if !categoryOrder}
+		<h1>is Loading...</h1>
+	{/if}
 	<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full h-full gap-10">
 		{#each categoryOrder as categoryId, index (index)}
 			<div

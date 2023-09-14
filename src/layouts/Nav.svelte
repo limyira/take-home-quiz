@@ -1,15 +1,17 @@
 <script>
-	import { languages, tableNumber } from '../mockupData';
 	import arrowDown from '../assets/chevron-down.png';
 	import IconButton from '../components/IconButton.svelte';
 	import Dropdown from '../components/Dropdown.svelte';
-	let isOpen = false;
-	let selectedLanguage = languages[0].name;
-
 	import callWaiterIcon from '../assets/notifications_active.png';
 	import viewBillIcon from '../assets/receipt.png';
 	import myCartIcon from '../assets/shopping_cart.png';
 	import tableIcon from '../assets/table.png';
+
+	const languages = [{ name: 'English' }, { name: '한국어' }];
+	const tableNumber = '12';
+
+	let isOpen = false;
+	let selectedLanguage = languages[0].name;
 
 	function callWaiter() {
 		alert('Waiter Called');
