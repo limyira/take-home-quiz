@@ -1,14 +1,14 @@
 <script>
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
-
+	const apiURL = `${import.meta.env.VITE_API_URL}/product`;
 	const { id } = $page.params;
 	let orderData;
 	let productOrder;
 	onMount(async () => {
 		try {
 			const res = await (
-				await fetch(`http://localhost:5173/api/product/${id}`, {
+				await fetch(`${apiURL}/${id}`, {
 					method: 'GET'
 				})
 			).json();

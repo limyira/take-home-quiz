@@ -1,12 +1,12 @@
 <script>
 	import { onMount } from 'svelte';
-
+	const apiURL = import.meta.env.VITE_API_URL;
 	let categoryOrder = [];
 	let categories = {};
 
 	onMount(async () => {
 		try {
-			const res = await fetch('http://localhost:5173/api');
+			const res = await fetch(apiURL);
 			const data = await res.json();
 			categoryOrder = data.categoryOrder;
 			categories = data.categories;
